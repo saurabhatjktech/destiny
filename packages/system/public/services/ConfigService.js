@@ -2,6 +2,11 @@
 
 angular.module('mean.system').factory('ConfigService', ['$resource',
   function($resource) {
-    return $resource('/configs', {name:'@name'});
+    return $resource('/configs/', {name:'@name'},
+    {
+      update: {
+        method: 'PUT'
+      }
+    });
   }
 ]);

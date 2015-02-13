@@ -52,6 +52,9 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       .state('home', {
         url: '/',
         templateUrl: 'system/views/index.html'
+      }).state('configuration', {
+        url: '/configuration',
+        templateUrl: 'system/views/configs.html'
       });
   }
 ]).config(['$locationProvider',

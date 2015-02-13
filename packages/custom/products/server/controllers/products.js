@@ -79,7 +79,6 @@ exports.destroy = function(req, res) {
  * Show an product
  */
 exports.show = function(req, res) {
- // console.log(req.product);
   res.json(req.product);
 };
 
@@ -101,7 +100,7 @@ res.json(products);
 
 
 exports.productCategory = function(req, res) {
-  var categoryList = new RegExp(req.query.categoryList);
+  //var categoryList = new RegExp(req.query.categoryList);
 
   var json;
   if(req.query.categoryList){
@@ -111,11 +110,6 @@ exports.productCategory = function(req, res) {
   }else{
     json = {};
   }
-
-
-
-  console.log('json..........product category list');
-  console.log(json);
 
   Productcategorylist.find(json).exec(function(err, productCategoryLists) {
 
