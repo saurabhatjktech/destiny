@@ -100,8 +100,6 @@ res.json(products);
 
 
 exports.productCategory = function(req, res) {
-  //var categoryList = new RegExp(req.query.categoryList);
-
   var json;
   if(req.query.categoryList){
     json = {
