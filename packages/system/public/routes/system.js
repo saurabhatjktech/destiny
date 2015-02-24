@@ -55,6 +55,12 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
       }).state('configuration', {
         url: '/configuration',
         templateUrl: 'system/views/configs.html'
+      }).state('catsliderconfig', {
+        url: '/catsliderconfig',
+        templateUrl: 'system/views/catsliderconfig.html'
+      }).state('promotionsconfig', {
+        url: '/promotionsconfig',
+        templateUrl: 'system/views/promotions.html'
       });
   }
 ]).config(['$locationProvider',

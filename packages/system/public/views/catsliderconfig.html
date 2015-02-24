@@ -1,0 +1,18 @@
+<section ng-controller="CategoryConfigsController" data-ng-init="findProductCategory()">
+	<form name="catSliderForm" role="form" data-ng-submit="updateConfigs()" novalidate>
+		<h5 style="color:blue;">Select Category to be listed on HomePage:</h5>
+		<div ng-repeat="category in categoryList">
+			<div class="action-checkbox">
+				<input id="{{category.name}}" type="checkbox" value="{{category._id}}" ng-checked="selection.indexOf(category._id) > -1" ng-click="toggleSelection(category._id)" />
+				<label for="{{category.name}}"></label>
+				{{category.name}}
+			</div>
+		</div>
+		<div class="minimum-order">
+			<h5 style="color:blue;">Select Products per category:</h5>
+			<input type="number" min="1" max="3" value="{{quantity}}" data-ng-model="quantity"/>
+		</div>
+		<button type="submit">
+			Submit
+		</button>
+</section>

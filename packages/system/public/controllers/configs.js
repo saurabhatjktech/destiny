@@ -36,4 +36,10 @@ function($scope, $rootScope, $location, $http, Global, Menus, ProductCategoryLis
 		});
 	};
 
-}]); 
+}])
+.controller('PromotionController', ['$scope', '$rootScope', '$location', '$http', 'Global', 'Menus', 'ProductCategoryLists', 'ConfigService',
+function($scope, $rootScope, $location, $http, Global, Menus, ProductCategoryLists, ConfigService) {
+	
+
+}])
+; 
