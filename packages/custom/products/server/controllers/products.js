@@ -108,7 +108,7 @@ exports.productCategory = function(req, res) {
   }else{
     json = {};
   }
-
+console.log(json);
   Productcategorylist.find(json).exec(function(err, productCategoryLists) {
 
     if (err) {
