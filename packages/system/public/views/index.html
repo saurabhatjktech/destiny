@@ -47,26 +47,40 @@
 
   <div class="right-container">
     <div class="advertisement-banner">
+      
+      <!--
       <div>
-        <a href="#">
-          <img src="/system/assets/img/advertisement-ban1.png" width="312" height="132" />
-        </a>
-      </div>
-      <div>
-        <a href="#">
-          <img src="/system/assets/img/advertisement-ban2.png" width="312" height="132" />
-        </a>
-      </div>
-      <div>
-        <a href="#">
-          <img src="/system/assets/img/advertisement-ban3.png" width="312" height="132" />
-        </a>
-      </div>
-      <div>
-        <a href="#">
-          <img src="/system/assets/img/advertisement-ban4.png" width="312" height="132" />
-        </a>
-      </div>
+                    <a href="#">
+                      <img src="/system/assets/img/advertisement-ban1.png" width="312" height="132" />
+                    </a>
+                  </div>
+                  <div>
+                    <a href="#">
+                      <img src="/system/assets/img/advertisement-ban2.png" width="312" height="132" />
+                    </a>
+                  </div>
+                  <div>
+                    <a href="#">
+                      <img src="/system/assets/img/advertisement-ban3.png" width="312" height="132" />
+                    </a>
+                  </div>
+                  <div>
+                    <a href="#">
+                      <img src="/system/assets/img/advertisement-ban4.png" width="312" height="132" />
+                    </a>
+                  </div>-->
+      
+      
+      <div ng-repeat="offer in offers">
+              
+                  <a data-ng-href="#">
+                    <!--<img data-ng-src="{{offer.images.src}}" class="img-responsive img-thumbnail" alt=""/>-->
+                    <div class="cate-name">{{offer.title}}</div>
+                  </a>
+            </div>
+      
+      <div class="clear"></div>
+    
     </div>
 
     <div class="you-may-like">

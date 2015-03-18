@@ -56,7 +56,21 @@ exports.updateOffers = function(req, res) {
  * List of Offers
  */
 exports.findAll = function(req, res) {
-	Offers.find().exec(function(err, offers) {
+
+	var json;
+	if (req.query.offerList) {
+		json = {
+			_id : {
+				$in : JSON.parse(req.query.offerList)
+			}
+		};
+	} else {
+		json = {};
+	}
+
+	console.log(json);
+
+	Offers.find(json).exec(function(err, offers) {
 
 		if (err) {
 			return res.json(500, {
@@ -66,4 +80,4 @@ exports.findAll = function(req, res) {
 		res.json(offers);
 
 	});
-}; 
+};

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController', ['$scope', 'Global','ProductCategoryLists','CategorizedProducts','ConfigService',
-  function($scope, Global, ProductCategoryLists, CategorizedProducts, ConfigService) {
+angular.module('mean.system').controller('IndexController', ['$scope', 'Global','ProductCategoryLists','CategorizedProducts','ConfigService','OfferService',
+  function($scope, Global, ProductCategoryLists, CategorizedProducts, ConfigService, OfferService) {
     $scope.global = Global;
 
     $scope.loadCategory = function() {
@@ -23,7 +23,21 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
 
         //$scope.listingCategory = configs[0].categoryList;
         });
-
+        
+        
+        ConfigService.query({
+                    name : 'offer_zone'
+                }, function(configs) {
+                    console.log(configs);
+                    var offerList = configs[0].value.offers;
+                    $scope.offerQuantity = configs[0].value.offer_quantity;
+                    var stringifiedOfferList = angular.toJson(offerList);
+                    OfferService.query({offerList:stringifiedOfferList},function(savedOffers) {
+                    	$scope.offers=savedOffers;
+                    });
+                });
+        
+        
     };
 
     $scope.listProductByCategory = function(category) {
