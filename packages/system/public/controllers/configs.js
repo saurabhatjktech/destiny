@@ -36,11 +36,13 @@ function($scope, $rootScope, $location, $http, Global, Menus, ProductCategoryLis
 		});
 	};
 
-}]).controller('PromotionsController', ['$scope', '$rootScope', '$location', '$http', 'Global', 'Offers', 'Menus', 'ConfigService',
-function($scope, $rootScope, $location, $http, Global, Offers, Menus, ConfigService) {
+}]).controller('PromotionsController', ['$scope', '$rootScope', '$location', '$http', 'Global', 'Menus', 'ConfigService','OfferService',
+function($scope, $rootScope, $location, $http, Global, Menus, ConfigService, OfferService) {
 	$scope.quantity = 1;
 	$scope.selection = [];
 	$scope.offers = [];
+	$scope.images = [];
+	$scope.offerImages = null;
 
 	// toggle selection for a given offer by id
 	$scope.toggleSelection = function toggleSelection(offerId) {
@@ -69,27 +71,81 @@ function($scope, $rootScope, $location, $http, Global, Offers, Menus, ConfigServ
 	};
 
 	$scope.addNewOffer = function addNewOffer() {
-		var offer = new Offers({
+		console.log($scope.images);
+		console.log('printed scope images');
+		if(typeof $scope.images[0] !== 'undefined'){
+          $scope.offerImages =
+            {
+              name: $scope.images[0].name,
+              src: $scope.images[0].src,
+              size: $scope.images[0].size,
+              type: $scope.images[0].type,
+              created: Date.now()
+            };
+        } else {
+          $scope.images = [];
+        }
+		
+		
+		var offer = new OfferService({
 			title : this.title,
-			image : this.image,
+			images: $scope.offerImages,
 			link : this.link,
 			html : this.html
 		});
-		
+
 		this.title = '';
-        this.image = '';
-        this.link = '';
-        this.html = '';
+		this.link = '';
+		this.html = '';
+		
+		console.log(offer);
 		
 		$http.post('/offers/', offer).success(function(response) {
-			$scope.offers.push(response);
-		});
+					$scope.offers.push(response);
+				});
+		
 	};
 
 	$scope.getOffers = function getOffers() {
-		$http.get('/offers/').success(function(response) {
-			$scope.offers = response;
+		OfferService.query({offerList:null},function(savedOffers) {
+			$scope.offers = savedOffers;
 		});
 	};
+	
+    $scope.uploadFileCallback = function(file) {
+    $scope.errorMessages = [];
+       console.log('length images'+ $scope.images.length);
+
+
+      if ($scope.images.length === 0 && file.type.indexOf('image') !== -1) {
+          $scope.errorMessages = '' ;
+          $scope.images.push(file);
+          $scope.addSlide(file.src);
+          }
+      else if ($scope.images.length === 1 && file.type.indexOf('image') !== -1) {
+          $scope.errorMessages.push('More Than One Image Not Allowed');
+          } else {
+            $scope.errorMessages.push('File Type Not Allowed');
+           //  $scope.images=[];
+                  }
+
+   console.log('length images at exit'+ $scope.images.length);
+   console.log($scope.images);
+    };	
+    
+    $scope.myInterval = 5000;
+    var slides = $scope.slides = [];
+    $scope.addSlide = function(url) {
+// var newWidth = 600 + slides.length;
+       slides.push({
+         image: url
+       });
+    };
+    
+    $scope.deleteImage = function() {
+      $scope.images = [];
+      $scope.errorMessages = ' ' ;
+     $scope.slides = [];
+     };    
 
 }]);

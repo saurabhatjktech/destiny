@@ -14,9 +14,32 @@ var OfferSchema = new Schema({
 		required : true,
 		trim : true
 	},
-	image : {
-		type : String,
-		required : true
+	images : {
+		name : {
+			type : String,
+			required : false,
+			trim : true
+		},
+		src : {
+			type : String,
+			required : false,
+			trim : true
+		},
+		size : {
+			type : String,
+			required : false,
+			trim : true
+		},
+		type : {
+			type : String,
+			required : false,
+			trim : true
+		},
+		created : {
+			type : Date,
+			required : false,
+			trim : true
+		}
 	},
 	link : {
 		type : String,

@@ -1,21 +1,40 @@
 <section ng-controller="PromotionsController" data-ng-init="getOffers()">
 
-	<div class="left-container">
+	<div class="left-container login-form__left">
 		<form name="addNewOfferForm" role="form" data-ng-submit="addNewOffer()" novalidate>
 			<h5 style="color:blue;">Add new offer details</h5>
+			<label mean-token="'Title'" class="label-sty">Title</label>
 			<input type="text" placeholder="Enter Title " name="title" class="input-sty" data-ng-model="title"/>
 			<br/>
 
-			<input type="text" placeholder="Enter Image" name="image" class="input-sty" data-ng-model="image"/>
+			<div class="outer-box">
+				<label mean-token="'Image'" for="image" class="label-sty">Image</label>
+				<div class="col-md-6">
+					<div class="input-sty">
+						<mean-upload file-dest="'/photos/'" upload-callback="uploadProductFinished(files)" upload-file-callback="uploadFileCallback(file)" ></mean-upload>
+						{{errorMessages}}
+
+						<div data-ng-repeat="img in images">
+							<img data-ng-src="{{img.src}}" class="img-responsive img-thumbnail" alt="">
+							<a class="btn" data-ng-click="deleteImage();"> <i class="glyphicon glyphicon-trash"></i> </a>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<br/>
 
+			<label mean-token="'Link'" class="label-sty">Link</label>
 			<input type="text" placeholder="Enter link" name="link" class="input-sty" data-ng-model="link"/>
 			<br/>
 
+			<label mean-token="'Html'" class="label-sty">Html</label>
 			<input type="text" placeholder="Enter HTML" name="html" class="input-sty" data-ng-model="html"/>
+			
+			<br/>
 			<br/>
 
-			<button type="submit">
+			<button type="submit" class="label-sty">
 				Submit
 			</button>
 		</form>
@@ -23,20 +42,20 @@
 
 	<div class="right-container">
 		<form name="promotionsForm" role="form" data-ng-submit="updatePromotions()" novalidate>
-		<h5 style="color:blue;">Select from Available Offers</h5>
-		<div ng-repeat="offer in offers" >
-			<input id="{{offer.title}}" type="checkbox" value="{{offer._id}}" ng-checked="selection.indexOf(offer._id) > -1" ng-click="toggleSelection(offer._id)" />
-			<label class="cate-name">{{offer.title}}</label>
-		</div>
+			<h5 style="color:blue;">Select from Available Offers</h5>
+			<div ng-repeat="offer in offers" >
+				<input id="{{offer.title}}" type="checkbox" value="{{offer._id}}" ng-checked="selection.indexOf(offer._id) > -1" ng-click="toggleSelection(offer._id)" />
+				<label class="cate-name">{{offer.title}}</label>
+			</div>
 
-		<div class="minimum-order">
-			<h5 style="color:blue;">Select Number of Offers to be displayed:</h5>
-			<input type="number" min="1" max="4" value="{{quantity}}" data-ng-model="quantity"/>
-		</div>
+			<div class="minimum-order">
+				<h5 style="color:blue;">Select Number of Offers to be displayed:</h5>
+				<input type="number" min="1" max="4" value="{{quantity}}" data-ng-model="quantity"/>
+			</div>
 
-		<button type="submit">
-			Submit
-		</button>
+			<button type="submit">
+				Submit
+			</button>
 		</form>
 	</div>
 </section>

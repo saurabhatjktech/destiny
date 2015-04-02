@@ -36,7 +36,7 @@ angular.module('mean.products').controller('ProductsController', ['$scope', '$ro
           color: this.color,
           price: this.price,
           category: this.category,
-          images: $scope.productImages,
+          images: $scope.productImages
         });
 
 

@@ -30,6 +30,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
                 }, function(configs) {
                     console.log(configs);
                     var offerList = configs[0].value.offers;
+                    console.log(offerList);
                     $scope.offerQuantity = configs[0].value.offer_quantity;
                     var stringifiedOfferList = angular.toJson(offerList);
                     OfferService.query({offerList:stringifiedOfferList},function(savedOffers) {
