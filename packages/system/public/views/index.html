@@ -1,22 +1,10 @@
 <section data-ng-controller="IndexController" data-ng-init="loadCategory()" >
 
 	<div class="left-container">
-		<div class="banner">
-			<div class="banner-categories">
-				<div>
-					<a href="#"> <img src="/system/assets/img/first-tab.png" width="228" height="75" /> </a>
-				</div>
-				<div>
-					<a href="#"> <img src="/system/assets/img/second-tab.png" width="218" height="76" /> </a>
-				</div>
-				<div>
-					<a href="#"> <img src="/system/assets/img/third-tab.png" width="218" height="76" /> </a>
-				</div>
-				<div>
-					<a href="#"> <img src="/system/assets/img/forth-tab.png" width="218" height="74" /> </a>
-				</div>
-			</div>
+		<div ng-controller="SliderController" class="banner">
+			<slider images="images"/>
 		</div>
+
 		<div ng-repeat="category in listingCategory"
 		ng-init="listProductByCategory(category)">
 			<div class="home-categories">
@@ -40,45 +28,23 @@
 	<div class="right-container">
 		<div class="advertisement-banner">
 
-			<!--
-			<div>
-			<a href="#">
-			<img src="/system/assets/img/advertisement-ban1.png" width="312" height="132" />
-			</a>
-			</div>
-			<div>
-			<a href="#">
-			<img src="/system/assets/img/advertisement-ban2.png" width="312" height="132" />
-			</a>
-			</div>
-			<div>
-			<a href="#">
-			<img src="/system/assets/img/advertisement-ban3.png" width="312" height="132" />
-			</a>
-			</div>
-			<div>
-			<a href="#">
-			<img src="/system/assets/img/advertisement-ban4.png" width="312" height="132" />
-			</a>
-			</div>-->
-
 			<div ng-repeat="offer in offers">
-
+				<br/>
 				<div ng-style="{'background-image':'url({{offer.images.src}})'}" style="height: 150px; width:auto;">
-					<br/><br/>
+					<br/>
+					<br/>
 					<a data-ng-href="#" >
-						<div class="cate-name">
-							{{offer.title}}
-						</div> 
-					</a>
+					<div class="cate-name">
+						{{offer.title}}
+					</div> </a>
 				</div>
 
 			</div>
-			
+
 			<div class="clear"></div>
 
 		</div>
-
+		<br/>
 		<div class="you-may-like">
 			<ul>
 				<li>
